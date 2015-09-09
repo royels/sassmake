@@ -1,13 +1,24 @@
-*.gem
-*.rbc
-/.config
+<<<<<<< HEAD
 /.bundle/
 /.yardoc
 /Gemfile.lock
 /_yardoc/
 /coverage/
-/InstalledFiles
 /doc/
+/pkg/
+/spec/reports/
+/tmp/
+*.bundle
+*.so
+*.o
+*.a
+mkmf.log
+=======
+*.gem
+*.rbc
+/.config
+/coverage/
+/InstalledFiles
 /pkg/
 /spec/reports/
 /test/tmp/
@@ -38,8 +49,4 @@ build/
 
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
-*.bundle
-*.so
-*.o
-*.a
-mkmf.log
+>>>>>>> 678ee4ef243a6bf039901791d9381f2716f1a11d
