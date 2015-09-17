@@ -1,26 +1,27 @@
 require "sassmake/version"
+require "sassmake/constant"
 require "fileutils"
+require "thor"
 
 module Sassmake
-  class Build
+  class Build < Thor
+    desc 'build', 'builds directories for you'
     def build_directories
-      files_and_directories = { "base" => ["base", "reset", "typography"] ,
-                                 "components" => ["media", "button", "carousel", "thumbnails"],
-                                 "layout" => ["grid", "header", "footer", "sidebar", "forms", "dropdown"],
-                                 "pages" => ["home-index", "home-about", "home-contact"],
-                                 "themes" => ["user", "admin"],
-                                 "utils" => ["variables", "mixins", "functions", "helpers"],
-                                 "vendors" => ["bootstrap"]}
-      module_name = 'module'
-      for directory in files_and_directories.keys
+      for directory in Variables.get_files_and_directories.keys
         FileUtils.mkdir directory
-        for file in files_and_directories[directory]
+        for file in Variables.get_files_and_directories[directory]
           FileUtils.touch directory + '/_' + file + '.scss'
         end
-        FileUtils.touch directory + '/_' + module_name + '.scss'
+        FileUtils.touch directory + '/_' + Variables.get_module_name() + '.scss'
       end
       FileUtils.touch '_main.scss'
     end
+    desc 'destroy' , 'destroys built sassmake directories'
+    def destroy_directories
+      for directory in Variables.get_files_and_directories.keys
+        FileUtils.remove_dir directory
+      end
+      FileUtils.rm '_main.scss'
+    end
   end
 end
-
