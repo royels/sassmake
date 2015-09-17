@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
 require 'sassmake'
 require 'fileutils'
-chatter = Sassmake::Build.new  
-chatter.build_directories  
+Sassmake::Build.start(ARGV)
